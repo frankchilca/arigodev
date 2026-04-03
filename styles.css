@@ -1,0 +1,156 @@
+:root {
+    --color-principal: #0084ff;
+    --color-acento: #00d4ff;
+    --fondo: #0a0a0b;
+    --card: #151518;
+    --texto-secundario: #a0a0a5;
+    --transicion: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* Transición más premium */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--fondo);
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+    color: white;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+section { padding: 100px 20px; max-width: 1200px; margin: 0 auto; text-align: center; }
+
+h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 60px;
+    background: linear-gradient(to right, #fff, var(--color-acento));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* HERO OPTIMIZADO */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at top right, #101014, #000);
+}
+
+.brand-tag {
+    display: inline-block;
+    color: var(--color-acento);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: clamp(2.2rem, 7vw, 4.2rem);
+    line-height: 1.1;
+    font-weight: 800;
+    margin-bottom: 25px;
+    max-width: 950px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--texto-secundario);
+    max-width: 650px;
+    margin: 0 auto 40px;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 15px 45px;
+    background: var(--color-principal);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: var(--transicion);
+    box-shadow: 0 10px 20px rgba(0, 132, 255, 0.2);
+}
+
+.btn-primary:hover { transform: translateY(-3px); background: var(--color-acento); color: #000; }
+
+/* GRID & CARDS CON EFECTO HOVER LIFT */
+.grid-propuesta { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+
+.item, .proyecto { 
+    background: var(--card); 
+    border-radius: 20px; 
+    border: 1px solid #222; 
+    transition: var(--transicion);
+    will-change: transform; /* Optimiza la animación */
+}
+
+.item { padding: 40px; }
+
+.proyectos { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+.proyecto { width: 350px; overflow: hidden; text-align: left; }
+.proyecto img { width: 100%; height: 220px; object-fit: cover; }
+.proyecto h3 { margin: 25px 25px 10px; }
+.proyecto p { color: var(--texto-secundario); padding: 0 25px 30px; font-size: 0.95rem; }
+
+/* EL EFECTO DE ELEVACIÓN */
+.item:hover, .proyecto:hover {
+    transform: translateY(-15px);
+    border-color: var(--color-acento);
+    box-shadow: 0 20px 40px rgba(0, 132, 255, 0.15);
+}
+
+/* SECCIÓN CTA (ESPACIADO CORREGIDO) */
+.cta-box {
+    background: linear-gradient(145deg, #151518, #0a0a0b);
+    padding: 80px 40px;
+    border-radius: 35px;
+    border: 1px solid #222;
+}
+
+.cta-box p { 
+    margin: 20px auto 60px; /* Separación de 60px para que el botón respire */
+    max-width: 700px; 
+    color: var(--texto-secundario);
+    font-size: 1.1rem;
+}
+
+/* ANIMACIONES DE REVELACIÓN */
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform;
+}
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+/* WHATSAPP & FOOTER */
+.whatsapp-container { position: fixed; bottom: 35px; right: 35px; display: flex; align-items: center; gap: 15px; z-index: 1000; }
+#whatsappText { background: rgba(0,0,0,0.8); padding: 8px 15px; border-radius: 10px; font-size: 14px; border: 1px solid #333; }
+.whatsapp-float { width: 60px; height: 60px; }
+.whatsapp-float img { width: 100%; animation: pulse 2.5s infinite; }
+
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+.footer { padding: 60px 20px; background: #050505; text-align: center; border-top: 1px solid #1a1a1a; }
+.footer .brand { color: var(--color-acento); font-weight: bold; font-size: 1.5rem; margin-bottom: 5px; }
+.footer .tagline { color: #555; font-size: 0.8rem; text-transform: uppercase; }
+
+/* FADE IN HERO */
+.fade-up { opacity: 0; transform: translateY(20px); animation: fadeUp 0.8s ease forwards; }
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 768px) { 
+    .proyecto { width: 100%; } 
+    section { padding: 60px 20px; }
+}
